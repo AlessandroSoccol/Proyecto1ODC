@@ -1,0 +1,19 @@
+CHIP ALU {
+IN
+    x[16], y[16], op;
+     // if (op==0) sets out x + y 
+     // if (op == 1) sets
+out x + (-y) 
+OUT 
+   out[16], ovf;
+PARTS:
+Mux16( a=x, b=false, sel= op, out = x1);
+  Not16(in = x1, out=notx1);
+
+Mux16( a=y, b=false, sel=op , out = y1);
+ Not16(in= y1, out=noty1);
+   
+ And16(a=x1, b=y1, out=o1);
+        Add16(a=x1, b=y1, out=o2);
+        Mux16(a=o1, b=o2, sel=f, out=F);
+  }
