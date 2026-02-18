@@ -1,0 +1,13 @@
+ChipCHIP UnsignedCompare16 {
+    IN x[16], y[16];
+    OUT lt,eq, gt;
+    
+    PARTS:
+    Not16(in=x, out=NX);
+    Not16(in=y, out=NY);
+
+    Add16<(a=x, b=y, op1= out[0..7], op2=out[8..15]);
+    Or8Way(in=op1, out=orlow);
+
+
+}
